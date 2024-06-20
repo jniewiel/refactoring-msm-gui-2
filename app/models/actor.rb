@@ -13,9 +13,8 @@
 class Actor < ApplicationRecord
   validates(:name, presence: true)
 
-  # has_many(:characters,
-  #          :class_name => "Character",
-  #          :foreign_key => "movie_id")
+  has_many(:characters,
+            :class_name => "Character")
 
   has_many(:movies,
            through: :characters,
@@ -25,13 +24,13 @@ class Actor < ApplicationRecord
            through: :characters,
            source: :movie)
 
-  def characters
-    key = self.id
+  # def characters
+  #   key = self.id
 
-    the_many = Character.where({ :actor_id => key })
+  #   the_many = Character.where({ :actor_id => key })
 
-    return the_many
-  end
+  #   return the_many
+  # end
 
   # def filmography
   #   the_many = Array.new
